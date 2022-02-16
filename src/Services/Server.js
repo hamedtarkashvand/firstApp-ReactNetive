@@ -8,6 +8,4 @@ const Server = axios.create({
   Server.defaults.params={
     api_key:API_KEY
   }
-  
-
   export default Server
