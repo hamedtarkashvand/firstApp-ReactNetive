@@ -25,6 +25,7 @@ const Routes = [{
   component:DetailMovie
 }]
 function App() {
+  
   return (
     <NavigationContainer>
       <Stack.Navigator
