@@ -1,29 +1,30 @@
-import React , {useEffect} from 'react';
+import React , {useEffect, useState} from 'react';
 import {Text,View , StyleSheet , Image , ScrollView} from 'react-native';
 import {useApiMovieDetails} from '../../hooks'
 import {CColor, LightenDarkenColor, wp} from '../../Global'
+import { HtTag  , HtTextMore} from '../../Common';
+
 
 const DetailMovie = ({route}) => {
     const [FetchDetails, detail,loading] = useApiMovieDetails()
-    // const {movie_id} = route.params;
-
+    const {movie_id} = route.params;
     useEffect(()=>{
-        // FetchDetails(movie_id)
-        FetchDetails(568124)
+        FetchDetails(movie_id)
+        // FetchDetails(634649)
     },[])
 
     const returnGenres = (genres) => {
-        return genres?.map((genres) => <Text style={{backgroundColor:CColor.blueCFF, color:CColor.whiteFFF,
-        padding:5, fontWeight:'bold', fontSize:9 , margin:1,  borderRadius:20,}} key={genres.id}>{genres.name}</Text> )
+        return genres?.map((genres) => <HtTag key={genres.id} text={genres.name} />)
     }
     
     return (
     <ScrollView
+    style={{backgroundColor:CColor.whiteFFF}}
         showsHorizontalScrollIndicator={false}>
           <View style={style.continerDetailMovie}>
             <View style={style.wrapperBackdrop}>
                 <Image style={style.backdrop}
-                 blurRadius={0.7}
+                 blurRadius={0.2}
                  source={{uri:`https://image.tmdb.org/t/p/w500${detail.backdrop_path}`}} />
                 <Text>{detail.original_title}</Text>
              </View>
@@ -31,7 +32,6 @@ const DetailMovie = ({route}) => {
              {
                  loading&&<Text>loading</Text>
              }
-
             <View style={style.contentDetails}>
 
                 <View style={style.wrapperPoster}>
@@ -40,7 +40,7 @@ const DetailMovie = ({route}) => {
                 </View>
 
                 <View style={style.content}>
-                    <Text style={style.content_title}>
+                    <Text style={style.content_title} ellipsizeMode='tail' numberOfLines={1}>
                        {detail.original_title}
                     </Text>
                     
@@ -59,37 +59,37 @@ const DetailMovie = ({route}) => {
                         </View>
                     </View>
 
-                    <View style={{overflow:'hidden' ,width:'100%', marginTop:10, display:'flex', flexDirection:'row',justifyContent:'space-between', flexWrap:'wrap'}}>
+                    <View style={style.wrapperGenres}>
                         {
                            returnGenres(detail.genres)
                         }
                     </View>
                 </View>
-
            </View>
-        </View>
 
-    </ScrollView>
-    
-    )
-}
+           <HtTextMore title='Overview'>
+             { detail.overview }
+           </HtTextMore>
+
+                     
+     </View>
+
+    </ScrollView> )}
 
 export default DetailMovie
 
 const style =  StyleSheet.create({
     continerDetailMovie:{
+        backgroundColor:CColor.whiteFFF,
         flex:1,
         alignItems:'center',
-        // padding:5,
-        borderWidth:1,
+        // borderWidth:1,
     },
     wrapperBackdrop:{
         width:'160%',
         margin:'auto',
         backgroundColor:CColor.black021,
         height:200,
-        // borderWidth:1,
-        // borderRadius:300,
         borderBottomEndRadius:600,
         borderBottomStartRadius:600,
         overflow:'hidden',
@@ -98,17 +98,20 @@ const style =  StyleSheet.create({
         resizeMode:'contain',
         width:'100%',
         height:'100%',
-        opacity:0.9,
+        opacity:0.8,
     },
     contentDetails:{
-        flex:1,
+        display:'flex',
         padding:15,
         paddingTop:10,
         flexDirection:'row',
         width:wp(100),
-            transform: [
-           { translateY: -55 }
-        ],
+        marginTop:-55
+        //   transform: [
+        //     { 
+        //         translateY: -55
+        //      }
+        // ],
     },
     content:{
         flex:3,
@@ -119,19 +122,18 @@ const style =  StyleSheet.create({
     },
     content_title:{
         fontWeight:'bold',
-         fontSize:28,
-         color:CColor.black021
+        fontSize:20,
+        color:CColor.black021
     },
     wrapperPoster:{
       flex:2,
       height:170,
-        elevation:1,
-        shadowColor:CColor.whiteFFF,
      },
      poster:{
          width:'100%',
          height:'100%',
-         resizeMode:'stretch' ,
+         resizeMode:'stretch',
+         borderRadius:15,
      },
      result:{
         display:'flex',
@@ -155,5 +157,12 @@ const style =  StyleSheet.create({
         textAlign:'center',
         color:LightenDarkenColor(CColor.gray0F9,-0.5)
       },
+      wrapperGenres:{
+        overflow:'hidden',
+        width:'100%',
+        marginTop:10,
+        display:'flex',
+        flexDirection:'row',
+        flexWrap:'wrap'}
 })
 // enum('cover', 'contain', 'stretch', 'repeat', 'center')	

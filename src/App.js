@@ -39,7 +39,7 @@ function App() {
           fontWeight: 'bold',
         },
       }}  
-       initialRouteName="DetailMovie">
+       initialRouteName="Home">
         {
           Routes.map((route)=> <Stack.Screen key={route.name} name={route.name} component={route.component}/>)
         }
