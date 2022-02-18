@@ -1,3 +1,4 @@
-import useMovieSearche from './useMovieSearche' 
+import useApiMovieSearch from './useMovieSearchApi';
+import useApiMovieDetails from './useMovieDetailsApi';
 
-export {useMovieSearche}
+export {useApiMovieSearch , useApiMovieDetails}

@@ -1,47 +1,53 @@
 import React , {useState } from 'react';
 import {View , Text , StyleSheet , FlatList} from 'react-native';
 import { CColor, wp , LightenDarkenColor, hp } from '../../Global';
-import {useMovieSearche} from '../../hooks';
-import {HTlistMove , HTalert , SerachBar} from '../../Common';
+import {useApiMovieSearch} from '../../hooks';
+import {HTlistMove , SerachBar} from '../../Common';
 
 const Movies = ({navigation})=> {
     const [value , setValue] = useState('')
-    const [ setPageNumber , pageNumber, listMovies, errorText , SerchScreenMovies] = useMovieSearche()
+    const [ setPageNumber , pageNumber, listMovies, errorText , SearchScreenMovies] = useApiMovieSearch()
     const pathComponent = 'DetailMovie';
    
+    const rowRenderItem = (item)=>{
+        return (
+            <HTlistMove
+            imgSrc={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+            nameMovie={item.title}
+            discriptionMovie={item.release_date}
+            onPress={()=>{
+                navigation.navigate(pathComponent, {
+                    movie_id: item.id,
+                  });
+            }}
+            
+
+             result={{
+                    language:item.original_language,
+                    vote_count:item.vote_count,
+                    vote_average:item.vote_average
+                }}
+            />
+        );
+    }
 
     return (
         <View style={style.containerMovies}>
             <SerachBar
              inputValue={value}
-             onSubmit={(e)=>SerchScreenMovies(e)}
+             onSubmit={(e)=>SearchScreenMovies(e)}
              onChangeValue={(e)=>setValue(e)}
              />
 
           <View style={style.ListMovies}>
-          <FlatList
-                data={listMovies}
-                horizontal={false}
-                // initialNumToRender={10} 
-                removeClippedSubviews
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id + 5 }
-                onEndReached={() => setPageNumber({...pageNumber,page:pageNumber.page+1})}
-                renderItem={({item}) => {
-                return (
-                    <HTlistMove
-                    imgSrc={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    nameMovie={item.title}
-                    discriptionMovie={item.release_date}
-                    onPress={()=>navigation.navigate(pathComponent)}
-                        result={{
-                            language:item.original_language,
-                            vote_count:item.vote_count,
-                            vote_average:item.vote_average
-                        }}
-                    />
-                );
-                }} />
+            <FlatList
+                    data={listMovies}
+                    horizontal={false}
+                    // initialNumToRender={10} 
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={item => item.id.toString()}
+                    onEndReached={() => setPageNumber({...pageNumber,page:pageNumber.page+1})}
+                    renderItem={({item}) => rowRenderItem(item)  } />
              
           </View>   
              {

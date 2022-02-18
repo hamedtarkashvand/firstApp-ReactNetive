@@ -1,7 +1,5 @@
 import React , {useState , useEffect} from 'react';
-import {movieSercher} from '../Services/serverMovies';
 import Server from '../Services/Server';
-import { API_KEY } from '../Services/configServer';
 
 export default ()=>{
     const [listMovies , setListMovies] = useState([])
@@ -13,7 +11,7 @@ export default ()=>{
     })
     let isMounted = true;   
 
-    const  SerchScreenMovies = async trem =>{
+    const  SearchScreenMovies = async trem =>{
           
         try {
             await Server.get('search/movie?language=en-US/', {
@@ -50,8 +48,9 @@ export default ()=>{
         })
         .then((response)=>{
           if ( isMounted) {
-              console.log(pageNumber.page)
-            setListMovies([...listMovies ,  ...response?.data?.results ])
+            //   console.log(pageNumber.page)
+            // setListMovies([...listMovies ,  ...response?.data?.results ])
+            setListMovies(response.data.results)
 
             // setPageNumber({
             //     page:response.data.page,
@@ -74,10 +73,10 @@ export default ()=>{
 
     useEffect(()=>{  
         latestListMovie();
-        console.log('ghfghfghfghh')
+        // console.log('ghfghfghfghh')
         // SerchScreenMovies('spiderman')
         return ()=>{ isMounted = false }
     },[pageNumber])
 
-    return [setPageNumber,pageNumber, listMovies, errorText , SerchScreenMovies];
+    return [setPageNumber,pageNumber, listMovies, errorText , SearchScreenMovies];
 }

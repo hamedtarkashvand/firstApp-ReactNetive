@@ -119,12 +119,9 @@ const style = StyleSheet.create({
     alignItems:'center',
     width:`100%`,
     height:45,
-    // borderWidth:1
   },
   boxResult:{
     marginTop:10
-    // width:wp(17),
-    // borderWidth:1
   },
   textBoxResult :{
     textAlign:'center',
@@ -133,14 +130,8 @@ const style = StyleSheet.create({
   },
   titlBoxResult:{
     textAlign:'center',
-    // fontWeight:'bold'
   },
   Notfound:{
     color:'red'
   }
 });
-
-// View style={style.result}>
-//         <View style={style.boxResult}>
-//           <Text style={style.textBoxResult}>270</Text>
-//           <Text style={style.titlBoxResult}>270</Text>
