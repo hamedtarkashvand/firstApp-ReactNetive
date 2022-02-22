@@ -23,7 +23,7 @@ export { HtTextMore }
 const style = StyleSheet.create({
     wrapperTextMore:{
          flex:1 ,
-          padding:10,
+         paddingHorizontal:15, 
          width:'100%',
     },
     title:{
