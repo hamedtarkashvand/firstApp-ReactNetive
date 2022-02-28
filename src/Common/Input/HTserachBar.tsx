@@ -1,17 +1,28 @@
 import React from 'react'
-import {View , Text , StyleSheet , TextInput} from 'react-native';
-import { CColor, wp, LightenDarkenColor } from '../../Global'
-import {Icon} from 'react-native-elements'
+import {View, StyleSheet , TextInput} from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign'
+import { CColor, wp } from '../../Global'
 import { HtButton } from '../';
+import { buttonBackgerandEnum } from '../../utils/typs';
 
+interface SerachBarProps {
+     inputValue:string ,
+     onChangeValue:(value:string)=>void ,
+     onSubmit:(value:string)=>void
+}
 
-const SerachBar = ({lable , iconName = 'search1' , inputValue , onChangeValue , onSubmit})=> {
+const SerachBar = (
+    {    inputValue ,
+         onChangeValue ,
+         onSubmit
+    }
+    : SerachBarProps)=> {
+
     return (
         <View style={style.containerMovies}>
            <View style={style.iconWrapper}>
            <Icon
-                name={iconName}
-                type='antdesign'
+                name={'search1'}
                 size={25}
                 color={CColor.black021}
                 />
@@ -21,7 +32,6 @@ const SerachBar = ({lable , iconName = 'search1' , inputValue , onChangeValue , 
             value={inputValue}
             onChangeText={(t)=>onChangeValue(t)}
             autoCorrect={false}
-            style={style.input}
             placeholder="Serach ..."
             autoCapitalize="none"
             />
@@ -29,14 +39,13 @@ const SerachBar = ({lable , iconName = 'search1' , inputValue , onChangeValue , 
            <View style={style.buttonWrapper}>
                <HtButton
                 OnPress={()=>onSubmit(inputValue)}
-                Type="primary" Title='SUBMIT' />
+                Type={buttonBackgerandEnum.primary} Title='SUBMIT' />
             </View>
         </View>
     )
 }
-
-
 export {SerachBar}
+
 const style = StyleSheet.create({
     containerMovies:{
         display:'flex',

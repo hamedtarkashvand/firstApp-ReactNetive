@@ -1,20 +1,26 @@
 import React from 'react'
 import {View , Text , StyleSheet , TextInput} from 'react-native';
 import { CColor, wp, LightenDarkenColor } from '../../Global'
-import {Icon} from 'react-native-elements'
+import Icon from 'react-native-vector-icons/AntDesign'
 
-const InputText = ({lable , iconName = 'search1' , inputValue , onChangeValue})=> {
+
+interface InputTextProps {
+    iconName?:string ,
+    inputValue:string ,
+    onChangeValue:(value:string)=>void
+}
+
+const InputText = ({iconName = 'search1' , inputValue , onChangeValue}:InputTextProps)=> {
     return (
         <View style={style.containerMovies}>
             <Text style={style.lable}>Movis</Text>
             <View style={style.wrapperInput}>
 
             <Icon
-                    name={iconName}
-                    type='antdesign'
-                    size={25}
-                    color={LightenDarkenColor(CColor.gray0F9,-0.5)}
-                    />
+                name={iconName}
+                size={25}
+                color={LightenDarkenColor(CColor.gray0F9,-0.5)}
+            />
 
             <TextInput
             value={inputValue}
@@ -63,8 +69,7 @@ const style = StyleSheet.create({
     },
     lable:{
         position:'absolute',
-        top:-15,left:15,
-        // backgroundColor:,
+        top:-15, left:15,
         fontWeight:'bold',
         paddingLeft:5,
         paddingRight:5
