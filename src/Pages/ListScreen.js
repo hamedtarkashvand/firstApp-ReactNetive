@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {HTlist} from '../Common';
+import {HtList} from '../Common';
 import {wp,CColor,LightenDarkenColor, hp} from '../Global';
 import { UserDate , Images} from '../fakeData/Data'
 
@@ -9,7 +9,7 @@ const ListScreen = () => {
   return (
     <View style={style.HomeScreenContainer}>
      <View>
-       <HTlist
+       <HtList
             name={'maman'}
             lastName={'soltane man'}
             images={Images.pic8}
@@ -23,7 +23,7 @@ const ListScreen = () => {
         // onEndReached={() => HTalert('props', 'onEndReached')}
         renderItem={({item}) => {
           return (
-            <HTlist
+            <HtList
             images={item.pic}
             name={item.name}
             lastName={item.lastName}

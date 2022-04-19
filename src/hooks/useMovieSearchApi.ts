@@ -1,17 +1,24 @@
 import React , {useState , useEffect} from 'react';
 import Server from '../Services/Server';
+import {movieResultType} from './../utils/typs'
 
-export default ()=>{
-    const [listMovies , setListMovies] = useState([])
-    const [errorText , setErrorText] = useState('')
-    const [pageNumber , setPageNumber] = useState({
+type pageNumberType = {
+    page:number,
+    total_pages?:number,
+    total_results?: number
+}
+
+export default () =>{
+    const [listMovies , setListMovies] = useState<movieResultType[]>([])
+    const [errorText , setErrorText] = useState<string>('')
+    const [pageNumber , setPageNumber] = useState<pageNumberType>({
         page:1,
         total_pages:0,
         total_results: 0
     })
-    let isMounted = true;   
+    let isMounted:boolean = true;   
 
-    const  SearchScreenMovies = async trem =>{
+    const  SearchScreenMovies = async (trem:string) =>{
           
         try {
             await Server.get('search/movie?language=en-US/', {
@@ -78,5 +85,5 @@ export default ()=>{
         return ()=>{ isMounted = false }
     },[pageNumber])
 
-    return [setPageNumber,pageNumber, listMovies, errorText , SearchScreenMovies];
+    return {setPageNumber,pageNumber, listMovies, errorText , SearchScreenMovies}
 }

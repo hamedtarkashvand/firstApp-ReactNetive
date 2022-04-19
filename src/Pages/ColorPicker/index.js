@@ -1,8 +1,7 @@
-import React  , {useState , useReducer} from 'react';
-import {View , Text , StyleSheet, BackHandler} from 'react-native';
-import { HtButton } from '../../Common';
-import { Icon } from 'react-native-elements';
-import { wp , CColor , LightenDarkenColor} from '../../Global';
+import React, {useReducer} from 'react';
+import {View , Text , StyleSheet} from 'react-native';
+import {HtButton } from '../../Common';
+import {wp , CColor , LightenDarkenColor} from '../../Global';
 
 const reducer = (state,action) =>{
     switch (action.type) {

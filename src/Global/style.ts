@@ -1,17 +1,17 @@
 import {Dimensions} from 'react-native';
 const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
-export function wp(percentage) {
+export function wp(percentage:number) {
   const value = (percentage * viewportWidth) / 100;
   return Math.round(value);
 }
-export function hp(percentage) {
+export function hp(percentage:number) {
   const value = (percentage * viewportHeight) / 100;
   return Math.round(value);
 }
 
 
 // ref : https://www.sitepoint.com/javascript-generate-lighter-darker-color/
-export function LightenDarkenColor(hex, lum) {
+export function LightenDarkenColor(hex:string, lum:number) {
 
 	// validate hex string
 	hex = String(hex).replace(/[^0-9a-f]/gi, '');

@@ -1,19 +1,31 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
-import { CColor, wp } from '../../Global';
+import {CColor, wp} from '../../Global';
+import { buttonBackgerandEnum } from '../../utils/typs';
 import {HtButton} from '../index'
+
+interface HtListMoveProps {
+  nameMovie:string,
+  imgSrc:string,
+  result:{
+    vote_average:number,
+    vote_count:number,
+    language:string
+  },
+  onPress:()=>void
+}
 
 const HTlistMove = (
   {nameMovie = 'name',
-   discriptionMovie = 'last name' ,
-    imgSrc = null ,
+    imgSrc,
     result={
       vote_average:0,
       vote_count:0,
       language:""
     },
      onPress 
-    }) => (
+    }:HtListMoveProps) => (
+
   <View style={style.continer}>
     {imgSrc && 
      <View style={style.imgContainer}>
@@ -22,9 +34,6 @@ const HTlistMove = (
 
     <View style={style.wraperDetails}>
       <Text ellipsizeMode='tail' numberOfLines={1} style={[ style.textStyle , style.nameMovie  ]}>{nameMovie}</Text>
-
-      {/* <Text style={[ style.textStyle , style.discriptionMovie]}>{discriptionMovie}</Text> */}
-
       <View style={style.result}>
         <View style={style.boxResult}>
           <Text style={style.textBoxResult}>{result.vote_count}</Text>
@@ -43,7 +52,7 @@ const HTlistMove = (
 
     <View style={[style.wraperButton]}>
       <HtButton Title="DETAILS" 
-      Type={'primary'}
+       Type={buttonBackgerandEnum.primary}
        OnPress={onPress}
        icon={
             {

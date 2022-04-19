@@ -2,7 +2,7 @@ import React from 'react'
 import {Text , StyleSheet} from 'react-native';
 import { CColor } from '../../Global';
 
-const HtTag = ({text}) => <Text style={style.tag} >{text}</Text>
+const HtTag = ({text}:{text:string}) => <Text style={style.tag} >{text}</Text>
 
 export { HtTag }
 

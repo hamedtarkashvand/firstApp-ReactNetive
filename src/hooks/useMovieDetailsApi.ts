@@ -1,12 +1,13 @@
 import React , {useState , useEffect} from 'react';
 import Server from '../Services/Server';
+import { movieDetailType } from '../utils/typs';
 
-export default (id)=>{
-    const [detail , setDetail] = useState([])
-    const [cast , setCast] = useState([])
+export default (id:number)=>{
+    const [detail , setDetail] = useState<movieDetailType[]>([])
+    const [cast , setCast] = useState<object[]>([])
     const [loading , setLoading] = useState(true)
      
-    const FetchDetails = async movie_id => {
+    const FetchDetails = async (movie_id:number) => {
            setLoading(true)
     try {        
             await Server.get(`/movie/${movie_id}`)
@@ -24,7 +25,7 @@ export default (id)=>{
         }
     }
 
-    const FetchImages = async movie_id => {
+    const FetchImages = async (movie_id:number) => {
            setLoading(true)
     try {        
             await Server.get(`/movie/${movie_id}/credits`)
@@ -42,12 +43,11 @@ export default (id)=>{
         }
     }
 
-
     useEffect(()=>{
         FetchDetails(id)
         FetchImages(id)
     },[id])
 
-    return [cast , detail , loading]
+    return {cast , detail , loading}
 }
 

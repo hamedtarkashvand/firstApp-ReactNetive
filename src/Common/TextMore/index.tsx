@@ -2,8 +2,12 @@ import React , {useState} from 'react'
 import {Text ,View, StyleSheet} from 'react-native';
 import { CColor } from '../../Global';
 
+interface HtTextMoreProps {
+    title:string,
+    children:string
+}
 
-const HtTextMore = ({title, children}) => {
+const HtTextMore = ({title, children}:HtTextMoreProps) => {
     const [more , setMore] = useState(false)
   return (
     <View style={style.wrapperTextMore}>

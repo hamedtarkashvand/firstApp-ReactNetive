@@ -1,8 +1,27 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import { Icon } from 'react-native-elements';
+import Icon ,{}  from 'react-native-vector-icons/AntDesign'
 
-const HTbuttonWiteIcon = ({colorIcon,iconName , sizeIcon=30, styleBtn={width:100, height:100},lable, callBack} ) =>(
+interface HtbuttonWiteIconProps {
+    colorIcon?:string,
+    iconName:string,
+    sizeIcon?:number,
+    styleBtn?:object,
+    lable?:string,
+    callBack:()=>void
+}
+
+const HtbuttonWiteIcon = (
+    {
+        colorIcon,
+        iconName,
+        sizeIcon=30, 
+        styleBtn={
+            width:100,
+            height:100
+        },
+        lable,
+        callBack }:HtbuttonWiteIconProps ) =>(
             <View style={[style.containerButton , styleBtn]}>
                 <TouchableOpacity 
                     style={style.touchableOpacity}
@@ -10,7 +29,6 @@ const HTbuttonWiteIcon = ({colorIcon,iconName , sizeIcon=30, styleBtn={width:100
                 >
                     <Icon
                         name={iconName}
-                        type='antdesign'
                         size={sizeIcon}
                         color={colorIcon||'black'}
                         />
@@ -19,7 +37,7 @@ const HTbuttonWiteIcon = ({colorIcon,iconName , sizeIcon=30, styleBtn={width:100
                 </TouchableOpacity>
             </View>
     ) 
-    export {HTbuttonWiteIcon};
+    export {HtbuttonWiteIcon};
     
     
 const style = StyleSheet.create({

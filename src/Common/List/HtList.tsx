@@ -1,8 +1,19 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
-import {HTbuttonWiteIcon , HTalert} from '../index'
+import { ImageProps } from 'react-native-elements';
+import {HtbuttonWiteIcon , HtAlert} from '../index'
 
-const HTlist = ({name = 'name', lastName = 'last name' , images = null}) => (
+interface HtListProps {
+  name:string,
+  lastName:string,
+  images:ImageProps
+}
+
+const HtList = ({
+  name = 'name',
+  lastName = 'last name',
+  images}:HtListProps) => (
+
   <View style={style.continer}>
     {images && 
      <View style={style.imgContainer}>
@@ -14,28 +25,26 @@ const HTlist = ({name = 'name', lastName = 'last name' , images = null}) => (
       <Text style={[ style.textStyle , style.subject]}>{lastName}</Text>
     </View>
     <View style={style.wraperButton}>
-      <HTbuttonWiteIcon
+      <HtbuttonWiteIcon
        iconName={'caretright'}
        colorIcon={'#FFFFFC'}
        styleBtn={{width:60,height:60,borderRadius:50}}
-       callBack={()=>HTalert(name,lastName)} />
+       callBack={()=>HtAlert(name , lastName)} />
     </View>
   </View>
 );
-export {HTlist};
+export {HtList};
 
 const style = StyleSheet.create({
   continer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    // borderWidth: 1,
     padding: 20,
     margin: 10,
     borderRadius: 10,
     backgroundColor:'white',
     elevation: 6,
-    // justifyContent:'flex-start'
   },
   imgContainer: {
     marginRight: 10,

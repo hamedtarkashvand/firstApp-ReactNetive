@@ -7,12 +7,12 @@ import { HtTag  , HtTextMore} from '../../Common';
 
 const DetailMovie = ({route}) => {
     const {movie_id} = route.params;
-    const [cast, detail,loading] = useApiMovieDetails(movie_id)
+    const {cast, detail,loading} = useApiMovieDetails(movie_id)
     useEffect(()=>{
         // FetchDetails(movie_id)
         // FetchDetails(634649)
     },[])
-    const returnGenres = (genres) => {
+    const returnGenres = (genres:object[]) => {
         return genres?.map((genres) => <HtTag key={genres.id} text={genres.name} />)
     }
     

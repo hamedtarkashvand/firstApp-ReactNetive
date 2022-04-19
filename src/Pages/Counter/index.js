@@ -1,6 +1,6 @@
 import React,{useState}from 'react';
 import {View, Text , StyleSheet} from 'react-native';
-import {HTbuttonWiteIcon} from '../../Common';
+import {HtbuttonWiteIcon} from '../../Common';
 import {wp} from '../../Global';
 
 const Counter =()=> {
@@ -9,7 +9,7 @@ const Counter =()=> {
 
     <View style={style.containerCounter}>
         <View style={style.counterWrappr}>
-            <HTbuttonWiteIcon iconName={'pluscircleo'} 
+            <HtbuttonWiteIcon iconName={'pluscircleo'} 
             colorIcon={'#EEF0F2'} 
             callBack={()=> count !== 20 && setCount(count + 1)} 
             styleBtn={
@@ -23,7 +23,7 @@ const Counter =()=> {
 
             <Text style={style.textCount}>{count}</Text>
 
-            <HTbuttonWiteIcon iconName={'minuscircleo'}
+            <HtbuttonWiteIcon iconName={'minuscircleo'}
              colorIcon={'#EEF0F2'}
              styleBtn={
                 { 

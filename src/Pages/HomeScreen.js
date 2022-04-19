@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View,StyleSheet,Image, FlatList} from 'react-native';
 import {Images} from '../fakeData/Data';
-import {HTbuttonWiteIcon} from './../Common';
+import {HtbuttonWiteIcon} from './../Common';
 import {wp , hp , CColor , LightenDarkenColor} from '../Global/style'
 
 
@@ -24,14 +24,13 @@ function HomeScreen({navigation}) {
               data={ListMenu}
               horizontal={false}
               numColumns={2}
-              // style={style.wraperListMenu}
               showsHorizontalScrollIndicator={true}
               contentContainerStyle={{margin:4}}
               keyExtractor={item => item.name}
               // onEndReached={() => HTalert('props', 'onEndReached')}
               renderItem={({item}) => {
                 return (
-                  <HTbuttonWiteIcon
+                  <HtbuttonWiteIcon
                   key={item.name}
                   lable={item.name}
                   styleBtn={{height:hp(25), width:wp(47), margin:wp(1)}}

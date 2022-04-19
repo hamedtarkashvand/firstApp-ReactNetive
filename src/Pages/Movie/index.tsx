@@ -1,27 +1,30 @@
-import React , {useState } from 'react';
+import React , {Component, useState } from 'react';
 import {View , Text , StyleSheet , FlatList} from 'react-native';
 import { CColor, wp , LightenDarkenColor, hp } from '../../Global';
 import {useApiMovieSearch} from '../../hooks';
 import {HTlistMove , SerachBar} from '../../Common';
+import { movieResultType } from '../../utils/typs';
 
-const Movies = ({navigation})=> {
+interface MoviesProps {
+    navigation:any
+}
+
+const Movies = ({navigation}:MoviesProps)=> {
     const [value , setValue] = useState('')
-    const [ setPageNumber , pageNumber, listMovies, errorText , SearchScreenMovies] = useApiMovieSearch()
+    const {setPageNumber , pageNumber, listMovies, errorText , SearchScreenMovies} = useApiMovieSearch()
     const pathComponent = 'DetailMovie';
    
-    const rowRenderItem = (item)=>{
+    const rowRenderItem = (item:movieResultType)=>{
         return (
             <HTlistMove
             imgSrc={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
             nameMovie={item.title}
-            discriptionMovie={item.release_date}
             onPress={()=>{
                 navigation.navigate(pathComponent, {
                     movie_id: item.id,
                   });
             }}
-            
-
+    
              result={{
                     language:item.original_language,
                     vote_count:item.vote_count,
